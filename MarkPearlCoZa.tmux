@@ -3,6 +3,13 @@ set -s escape-time 1
 set -g base-index 1
 setw -g pane-base-index 1
 
+# enable vi keys
+setw -g mode-keys vi
+
+# allow you to use pbcopy and pbpase
+set -g default-command "reattach-to-user-namespace -l /bin/bash"
+bind C-v run "tmux set-buffer \ "$(reattach-to-user-namespace pbpaste)\"; tmux paste-buffer"
+
 bind | split-window -h
 bind _ split-window -v
 
